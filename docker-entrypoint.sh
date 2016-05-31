@@ -38,7 +38,7 @@ function start() {
     write_lines "$TRUSTED_HOSTS" "/etc/opendkim/KeyTable" "\"mail._domainkey.\$LINE \$LINE:mail:/etc/opendkim/keys/\$LINE/mail.private\""
     write_lines "$TRUSTED_HOSTS" "/etc/opendkim/SigningTable" "\"*@\$LINE mail._domainkey.\$LINE\""
     chown opendkim:opendkim -R /etc/opendkim/keys
-    chmod 644 -R /etc/opendkim/keys
+    chmod 750 -R /etc/opendkim/keys
 
     service rsyslog start
     service spamassassin start
