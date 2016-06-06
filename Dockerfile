@@ -11,6 +11,9 @@ RUN apt-get update \
         sasl2-bin \
         spamassassin \
         spamc \
+        libmail-dkim-perl \
+        libcrypt-openssl-random-perl \
+        libcrypt-openssl-rsa-perl \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY docker-entrypoint.sh /
