@@ -6,14 +6,14 @@ This is a simpel postfix setup that:
  - uses saslauth to authenticate (only one user)
  - allows multiple domains
  - uses opendkim
- 
+
 # How to use this image
 
 ```
 docker run \
   --name mail
   --hostname mail.example.com \
-  --volume /data/opendkim/keys:/etc/opendkim/keys \ 
+  --volume /data/opendkim/keys:/etc/opendkim/keys \
   --env MYORIGIN="example.com" \
   --env VIRTUAL_ALIAS_DOMAINS="example.com example.nl" \
   --env VIRTUAL_ALIAS_MAPS="@example.com example.com@gmail.com;@example.nl example.nl@gmail.com" \
@@ -43,3 +43,5 @@ the following structure:
            - mail.private <-- the opendkim key for example.com
          - example.nl
            - mail.private <-- the opendkim key for example.nl
+
+Use `--env BLACKLIST=zen.spamhaus.org` to configure a blacklist for Postfix.

@@ -19,6 +19,10 @@ function start() {
     postconf -e "smtpd_sasl_local_domain = $myhostname"
     postconf -e "virtual_alias_domains = ${VIRTUAL_ALIAS_DOMAINS:-$MYORIGIN}"
 
+    if [ ! -z "${BLACKLIST}" ]; then
+      postconf -e "smtpd_client_restrictions = reject_rbl_client ${BLACKLIST}";
+    fi
+
     write_lines "$VIRTUAL_ALIAS_MAPS" "/etc/postfix/virtual"
     postmap /etc/postfix/virtual
 
